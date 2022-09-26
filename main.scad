@@ -1,20 +1,30 @@
 // length is the main customizable thing
-length = 60;
+length = 55;
 
 // you can also customize these
 thickness = 1;
-width = 9.5;
+width = 10;
 
 // and these if you'd like
 tip_r = 1.5;
-taper_len = 20;
+taper_len = 15;
+layer_height = 0.2;
 
 $fn=100;
 
-hull() {
-    cylinder(h=thickness, r=tip_r);
-    translate([taper_len, 0, 0])
-    cylinder(h=thickness, r=width / 2);
-    translate([length - tip_r - width / 2, 0, 0])
-    cylinder(h=thickness, r=width / 2);
+difference() {
+    hull() {
+        cylinder(h=thickness, r=tip_r);
+        translate([taper_len, 0, 0])
+        cylinder(h=thickness, r=width / 2);
+        translate([length - tip_r - width / 2, 0, 0])
+        cylinder(h=thickness, r=width / 2);
+    }
+    
+    translate([max(length - 16, 22), 0, thickness - layer_height])
+    linear_extrude(1) {
+        text(str(length), size = 8, halign = "right", valign = "center");
+        translate([0, -0.8, 0])
+        text("mm", size = 4, halign = "left", valign = "top");
+    }
 }
