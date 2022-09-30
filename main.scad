@@ -1,4 +1,7 @@
 // length is the main customizable thing
+// my shirts are mostly 55 mm (2.2 in), with one
+// 45 mm (1.75 in), and sizes up to 70 mm (2.75
+// in) are common
 length = 55;
 
 // you can also customize these
